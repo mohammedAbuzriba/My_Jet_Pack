@@ -1,4 +1,4 @@
-package ly.youcan.myapplication.Pages.CounterPage
+package ly.youcan.myapplication.core.LearnJetPack.CounterPage
 
 import android.util.Log
 import android.widget.Toast
@@ -91,8 +91,8 @@ fun conterPage(){
 
 }
 
-@Preview(showBackground = true)
-@Composable
-fun PreviewMessageCard() {
-    conterPage()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun PreviewMessageCard() {
+//    conterPage()
+//}

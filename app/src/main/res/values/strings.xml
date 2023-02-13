@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="get_User">Get User</string>
+    <string name="sign_In">Sign In</string>
 </resources>

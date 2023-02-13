@@ -1,4 +1,4 @@
-package ly.youcan.myapplication.core.database
+package ly.youcan.myapplication.data.database
 
 import android.content.Context
 import androidx.room.Database
@@ -6,19 +6,17 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(
-    entities = [UserDbModel::class],
-    version = 1,
-    )
-abstract class UserDb:RoomDatabase() {
+@Database(entities = [UserDbModel::class], version = 1,)
+abstract class UserDb : RoomDatabase() {
     abstract fun getuserDao(): UserDao
-    companion object{
+
+    companion object {
         @Volatile
-        private var database: UserDb? =null
+        private var database: UserDb? = null
 
         fun initDb(context: Context?): UserDb {
-            if(database ==null){
-                synchronized(this){
+            if (database == null) {
+                synchronized(this) {
                     database = Room.databaseBuilder(
                         context!!,
                         UserDb::class.java,
@@ -28,7 +26,11 @@ abstract class UserDb:RoomDatabase() {
                 }
 
             }
-          return database!!
+            return database!!
+        }
+
+        fun initDbRepo(): UserDb {
+            return database!!
         }
 
     }

@@ -1,4 +1,4 @@
-package ly.youcan.myapplication.Pages.UserPage.Composables
+package ly.youcan.myapplication.core.LearnJetPack.UserPage.Composables
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

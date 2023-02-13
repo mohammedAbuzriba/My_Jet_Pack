@@ -1,4 +1,4 @@
-package ly.youcan.myapplication.Pages.loginPage
+package ly.youcan.myapplication.core.LearnJetPack
 
 import android.util.Log
 import androidx.compose.foundation.layout.*
@@ -13,7 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import ly.youcan.myapplication.Pages.CounterPage.conterPage
+import ly.youcan.myapplication.core.LearnJetPack.CounterPage.conterPage
 
 data class User(var name:String,var pass:String)
 @Composable

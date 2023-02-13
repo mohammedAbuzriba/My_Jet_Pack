@@ -10,15 +10,15 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import ly.youcan.myapplication.core.Recourc
  import ly.youcan.myapplication.data.entity.UserEntity
-import ly.youcan.myapplication.data.repository.LocalUserRepositoryImps
+import ly.youcan.myapplication.data.database.repository.LocalUserRepositoryImps
 
-class UserViewModel() : ViewModel() {
+class UserView() : ViewModel() {
    private val userrepository = LocalUserRepositoryImps()
     private var currnetState = Recourc.Inti<List<UserEntity>>()
     val state = MutableStateFlow<Recourc<List<UserEntity>>>(currnetState)
 
     fun getUsers() {
-        insertUser()
+        //insertUser()
         viewModelScope.launch {
             userrepository.getallUSer().onEach {
                 delay(2000)
@@ -27,19 +27,31 @@ class UserViewModel() : ViewModel() {
         }
 
     }
-
-    fun insertUser() {
+    fun getAllUsers() {
+        //insertUser()
         viewModelScope.launch {
-            for (i in 1..10){
-                userrepository.insertUser(
-                    UserEntity(
-                        id = i,
-                        name = "new $i",
-                        phonNumber = "09100000000$i"
-                    )
-                )
+            userrepository.getallUSer().collect {
+                delay(2000)
+                state.value = it
             }
         }
 
     }
+
+//    fun insertUser() {
+//        viewModelScope.launch {
+//            for (i in 1..10){
+//                userrepository.insertUser(
+//                    UserEntity(
+//                        id = i,
+//                        name = "new $i",
+//                        phonNumber = "09100000000$i",
+//                        email = "",
+//                        password = ""
+//                    )
+//                )
+//            }
+//        }
+//
+//    }
 }

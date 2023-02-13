@@ -1,4 +1,4 @@
-package ly.youcan.myapplication.Pages.UserPage
+package ly.youcan.myapplication.core.LearnJetPack.UserPage
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,15 +12,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import ly.youcan.myapplication.Pages.UserPage.Composables.UserItem
-import ly.youcan.myapplication.UserViewModel
+import ly.youcan.myapplication.core.LearnJetPack.UserPage.Composables.UserItem
+import ly.youcan.myapplication.UserView
 import ly.youcan.myapplication.core.Recourc
 import ly.youcan.myapplication.data.entity.UserEntity
 
 
 @Composable
 fun UserPage() {
-    val vm:UserViewModel= viewModel<UserViewModel>()
+    val vm:UserView= viewModel<UserView>()
+    //val vm: UserViewModel by viewModel()
     val state = vm.state.collectAsState().value
 //    val state by remember {
 //        mutableStateOf<Recourc<List<UserEntity>>>(Recourc.Inti<List<UserEntity>>())
@@ -38,7 +39,8 @@ fun UserPage() {
             Spacer(modifier = Modifier.size(20.dp))
             Button(
                 onClick = {
-                    vm.getUsers()
+                    vm.getAllUsers()
+
                 }
             )
             {
@@ -47,8 +49,8 @@ fun UserPage() {
             Spacer(modifier = Modifier.size(30.dp))
 
 
-            when(state){
-                is Recourc.Loading<List<UserEntity>> ->{
+            when (state) {
+                is Recourc.Loading<List<UserEntity>> -> {
                     Column(
                         modifier = Modifier
                             .fillMaxSize(),
@@ -58,18 +60,18 @@ fun UserPage() {
                         CircularProgressIndicator()
                     }
                 }
-                is Recourc.Success<List<UserEntity>> ->{
+                is Recourc.Success<List<UserEntity>> -> {
 
                     LazyColumn(content = {
-                        items(state.data!!.size) { index->
-                            UserItem(user= state.data!![index])
+                        items(state.data!!.size) { index ->
+                            UserItem(user = state.data!![index])
                         }
                     })
                 }
-                is Recourc.Error<List<UserEntity>> ->{
+                is Recourc.Error<List<UserEntity>> -> {
 
                 }
-                else ->{
+                else -> {
 
                 }
             }
